@@ -42,7 +42,7 @@ import { Department, Project, ProjectMember } from './organizations/entities';
               Project,
               ProjectMember,
             ],
-            synchronize: process.env.NODE_ENV !== 'production', // Disable in production
+            synchronize: true, // Auto-create tables
             logging: process.env.NODE_ENV !== 'production',
             ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
           }
@@ -60,7 +60,7 @@ import { Department, Project, ProjectMember } from './organizations/entities';
               Project,
               ProjectMember,
             ],
-            synchronize: process.env.NODE_ENV !== 'production',
+            synchronize: true, // Auto-create tables
             logging: process.env.NODE_ENV !== 'production',
           },
     ),
