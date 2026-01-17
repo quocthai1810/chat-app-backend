@@ -57,7 +57,7 @@ This API provides endpoints for a real-time chat application with the following 
 - **Chat history** retrieval
 
 ### WebSocket Events
-Connect to the WebSocket at \`ws://localhost:3000/chat\`
+Connect to the WebSocket at the deployed URL + \`/chat\`
 
 #### Client → Server Events:
 - \`sendMessage\` - Send a new message
@@ -78,33 +78,29 @@ Connect to the WebSocket at \`ws://localhost:3000/chat\`
     .addTag('Upload', 'File upload operations')
     .setContact(
       'API Support',
-      'https://github.com/your-repo',
+      'https://github.com/quocthai1810/chat-app-backend',
       'support@example.com',
     )
     .setLicense('MIT', 'https://opensource.org/licenses/MIT')
     .build();
 
-  // Only enable Swagger in non-production environments
-  if (process.env.NODE_ENV !== 'production') {
-    const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api', app, document, {
-      swaggerOptions: {
-        persistAuthorization: true,
-        tagsSorter: 'alpha',
-        operationsSorter: 'alpha',
-      },
-      customSiteTitle: 'Chat App API Documentation',
-    });
-  }
+  // Enable Swagger for all environments (demo purposes)
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document, {
+    swaggerOptions: {
+      persistAuthorization: true,
+      tagsSorter: 'alpha',
+      operationsSorter: 'alpha',
+    },
+    customSiteTitle: 'Chat App API Documentation',
+  });
 
   // Start server
   const port = process.env.PORT || 3000;
   await app.listen(port);
 
   logger.log(`🚀 Application is running on: http://localhost:${port}`);
-  if (process.env.NODE_ENV !== 'production') {
-    logger.log(`📚 Swagger documentation available at: http://localhost:${port}/api`);
-  }
+  logger.log(`📚 Swagger documentation available at: http://localhost:${port}/api`);
   logger.log(`🔌 WebSocket endpoint: ws://localhost:${port}/chat`);
 }
 
