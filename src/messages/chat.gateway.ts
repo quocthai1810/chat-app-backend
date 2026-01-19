@@ -21,7 +21,7 @@ import { MessageStatus } from './entities/message.entity';
  */
 @WebSocketGateway({
   cors: {
-    origin: process.env.WS_CORS_ORIGIN || process.env.CORS_ORIGIN || '*',
+    origin: '*',
     methods: ['GET', 'POST'],
     credentials: true,
   },
